@@ -1,0 +1,46 @@
+<html>
+    <head>
+
+    </head>
+    <body style="background-color: #C70039;">
+        <div>
+            <div style="display: flex; justify-content: center; align-items: center; height: 200px; ">
+                <div style="width: 1020px; display: flex; justify-content: center; align-items: center; background-color: white; border-radius: 10px;">
+                    <span style="font-size: 50px; color: black;">Meme template finder</span>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center; height: 55px;">
+                <div style="height: 46px; width: 450px; padding: 5px; position: relative; z-index: 10; background-color: white; border-radius: 10px 10px 0px 0px; border-top: 3px solid black; border-left: 3px solid black; border-right: 3px solid black; border-bottom: 1px solid grey;">
+                    <form method="POST" enctype="multipart/form-data" style="display: flex; justify-content: center; align-items: center;">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+                
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <div style="display: flex; align-items: center;flex-direction: column; position: relative; z-index: 1; width: 500px; height: 450px; border: 3px solid black; border-radius: 5px; margin-bottom: 20px; background-color: white; padding: 10px;">
+                    {% if template %}
+                        <div>
+                            <p style="font-size: 30px; color: black; margin: 0px; margin-top: 40px;">
+                                {{ template }}
+                            </p>
+                        </div>
+                        <div style="border: 0.5px solid black; margin-top: 70px;">
+                            {% if template_path %}
+                                {% load static %}
+                                <img src="{% static ''%}{{ template_path }}" alt="My image">
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <div style="display: flex; justify-content: center;align-items: center; margin: 0px; flex: auto; padding: 100px;">
+                            <p style="font-size: 25px; color: rgb(100, 100, 100);">Please, choose a meme.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
